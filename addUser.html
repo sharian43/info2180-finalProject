@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="addUser.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Dolphin CRM</title>
+  </head>
+
+  <body>
+    <header>
+      <img src="dolphin.png" id="header-pic" />
+      <h3>Dolphin CRM</h3>
+    </header>
+    <div class="container">
+        <h2>New User</h2>
+
+    <section> 
+        <label for="firstname">First Name</label>        
+        <label for="lastname">Last Name</label>
+
+        <input id="firstname" type="firstname" name="firstname" placeholder="John" />
+        <input id="lastname" type="lastname" name="lastname" placeholder="Doe" />
+
+        <label for="email">Email</label>
+        <label for="password">Password</label>
+
+
+        <input id="email" type="email" name="email" placeholder="example@gmail.com"/>
+    
+        <input id="password" type="password" name="password"/>
+
+        <label for="role">Role</label>
+        <br/>
+
+       <select id="role" name="role">
+         <option value="Admin">Admin</option>
+         <option value="Member">Member</option>
+       </select>
+       <br/>
+    <div class="btn">
+    <button>Save</button></div>
+</section>
+</div>
+     
+  <aside>
+    
+    <a href=""><i class="fa-solid fa-house"></i>Home</a>
+    <br />
+    <a href=""><i class="fa-solid fa-user"></i>New Contact</a>
+    <br />
+    <a href=""><i class="fa-solid fa-users"></i></i>Users</a>
+    <br />
+    <br />
+    <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+
+  </aside>
+</body>
+</html>
