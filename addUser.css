@@ -95,6 +95,7 @@ button{
     border-radius: 10px;
     background-color: #45a049;
     margin: 10px;
+    border-style: none;
 }
 button:hover {
     background-color: #45a049;
