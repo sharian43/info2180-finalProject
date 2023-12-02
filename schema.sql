@@ -1,41 +1,42 @@
 CREATE DATABASE schema;
 
--- Users Table
+-- schema.sql
+-- Create users table
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    role VARCHAR(50),
+    created_at DATETIME
 );
 
--- Contacts Table
+-- Create contacts table
 CREATE TABLE contacts (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    title VARCHAR(50),
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    email VARCHAR(255),
     telephone VARCHAR(20),
     company VARCHAR(255),
-    type VARCHAR(50) CHECK (type IN ('sales lead', 'support')),
+    type ENUM('sales lead', 'support'),
     assigned_to INT,
     created_by INT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (assigned_to) REFERENCES users(id),
-    FOREIGN KEY (created_by) REFERENCES users(id)
+    created_at DATETIME,
+    updated_at DATETIME CURRENT_TIMESTAMP
 );
 
--- Notes Table
+-- Create notes table
 CREATE TABLE notes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     contact_id INT,
-    comment TEXT NOT NULL,
+    comment TEXT,
     created_by INT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (contact_id) REFERENCES contacts(id),
-    FOREIGN KEY (created_by) REFERENCES users(id)
+    created_at DATETIME
 );
+
+-- Insert a user with hashed password
+INSERT INTO users (firstname, lastname, email, password, role, created_at) 
+VALUES ('Admin', 'User', 'admin@project2.com', '$2a$12$3WE1VhzjyFOY8/dWQghy2e/jr2eZpSjJi2D3rxgQ/fnSkUCSSr7Im', 'admin'. now());
