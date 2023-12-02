@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Validate user input (you should perform more validation here)
+    // Validate user input
     if (empty($email) || empty($password)) {
         echo "Please enter both email and password.";
     } else {
