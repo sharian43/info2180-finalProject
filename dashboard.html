@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolphin CRM</title>
+    <link rel="stylesheet" href="dash.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="dash.js"></script>
+</head>
+<body>
+    <header>
+        <img src="dolphin.png" id="header-pic" />
+        <h3>Dolphin CRM</h3>
+    </header>
+    <div class="container">
+      <h2>Dashboard</h2>
+      <button id="addContactButton" onclick="addcontact()"><i class="fas fa-plus"></i> Add Contact</button>
+
+      <!-- Filter buttons -->
+      <div id="filterButtons">
+        <h3><i class="fa-solid fa-filter"></i>Fliter By: </h3>
+          <button onclick="showContacts('full')">Full</button>
+          <button onclick="showContacts('sales lead')">Sales Lead</button>
+          <button onclick="showContacts('support')">Support</button>
+          <button onclick="showContacts('assigned to me')">Assigned to Me</button>
+      </div>
+      
+      <table id="userTable">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Company</th>
+                  <th>Type</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- User data will be populated here dynamically -->
+          </tbody>
+      </table>
+    </div>
+    <aside>
+      <a href=""><i class="fa-solid fa-house"></i>Home</a>
+      <br />
+      <a href=""><i class="fa-solid fa-user"></i>New Contact</a>
+      <br />
+      <a href=""onclick="showUsersTable()"><i class="fa-solid fa-users"></i></i>Users</a>
+      <br />
+      <br />
+      <hr>
+      <a href="login.php?logout=true"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+
+    </aside>
+</body>
+</html>
