@@ -91,7 +91,7 @@ $conn->close();
             <label for="password">Password:</label>
             <input type="password" name="password" required><br>
     
-            <button type="submit">Login <img src="lock_icon.png" alt="Lock"></button>
+            <button type="submit"><i class="fas fa-lock"></i> Login</button>
         </form>
     </div>
     
