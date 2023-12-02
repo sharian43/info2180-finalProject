@@ -1,22 +1,30 @@
 function showUsersTable() {
     // Assume userRole is a variable containing the user's role (retrieved from the server)
-    var userRole = "admin"; // Change this according to the user's actual role
+    var userRole = "admin"; 
 
-    // Check if the user is an admin
-    if (userRole === "admin") {
-        document.getElementById("userTable").style.display = "block";
-        // You would fetch and populate user data from the server here
-        // For demonstration purposes, let's add a sample row
-        var userData = {
-            name: "John Doe",
-            email: "john@example.com",
-            role: "Admin",
-            dateCreated: "2023-01-01"
-        };
-        populateUserTable(userData);
-    } else {
-        alert("You do not have permission to view this page.");
-    }
+  // Check if the user is an admin
+  if (userRole === "admin") {
+      document.getElementById("userTable").style.display = "block";
+
+      // AJAX request to fetch user data from the server
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "url_to_your_server_endpoint", true);
+
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+              // Parse the JSON response from the server
+              var userData = JSON.parse(xhr.responseText);
+              populateUserTable(userData);
+          } else if (xhr.readyState === 4) {
+              // Handle errors or no data received from the server
+              console.error("Error fetching user data");
+          }
+      };
+      // Send the request
+      xhr.send();
+  } else {
+      alert("You do not have permission to view this page.");
+  }
 }
 
 function populateUserTable(userData) {
