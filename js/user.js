@@ -11,15 +11,17 @@ function showUsersTable() {
       xhr.open("GET", "url_to_your_server_endpoint", true);
 
       xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-              // Parse the JSON response from the server
-              var userData = JSON.parse(xhr.responseText);
-              populateUserTable(userData);
-          } else if (xhr.readyState === 4) {
-              // Handle errors or no data received from the server
-              console.error("Error fetching user data");
-          }
-      };
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // Parse the JSON response from the server
+                var userData = JSON.parse(xhr.responseText);
+                populateUserTable(userData);
+            } else {
+                // Handle errors or no data received from the server
+                console.error("Error fetching user data");
+            }
+        }
+    };
       // Send the request
       xhr.send();
   } else {

@@ -1,3 +1,36 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Replace these variables with your actual database credentials
+$host = 'localhost';
+$username = "new_user";
+$password = 'password123';
+$dbname = "dolphin_crm";
+
+// Create connection
+$conn = mysqli_connect($host, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch user data for the dashboard
+$user_id = $_SESSION["user_id"];
+$sql = "SELECT title, name, email, company, type FROM contacts WHERE assigned_to = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,14 +69,24 @@
               </tr>
           </thead>
           <tbody>
-              <!-- User data will be populated here dynamically -->
+            <?php
+              // Display user data in the table
+              while ($row = $result->fetch_assoc()) {
+                  echo "<tr>";
+                  echo "<td>" . $row["title"] . ". " . $row["name"] . "</td>";
+                  echo "<td>" . $row["email"] . "</td>";
+                  echo "<td>" . $row["company"] . "</td>";
+                  echo "<td>" . $row["type"] . "</td>";
+                  echo "</tr>";
+              }
+            ?>
           </tbody>
       </table>
     </div>
     <aside>
-      <a href=""><i class="fa-solid fa-house"></i>Home</a>
+      <a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a>
       <br />
-      <a href=""><i class="fa-solid fa-user"></i>New Contact</a>
+      <a href="newContact.html"><i class="fa-solid fa-user"></i>New Contact</a>
       <br />
       <a href=""onclick="showUsersTable()"><i class="fa-solid fa-users"></i></i>Users</a>
       <br />
@@ -54,3 +97,7 @@
     </aside>
 </body>
 </html>
+
+<?php
+$stmt->close();
+?>

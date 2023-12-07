@@ -1,3 +1,50 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Replace these variables with your actual database credentials
+  $host = 'localhost';
+  $username = "new_user";
+  $password = 'password123';
+  $dbname = "dolphin_crm";
+
+  // Create connection
+  $conn = mysqli_connect($host, $username, $password, $dbname);
+
+  // Check connection and handle errors
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Collect form data
+  $firstname = $_POST["firstname"];
+  $lastname = $_POST["lastname"];
+  $email = $_POST["email"];
+  $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+  $role = $_POST["role"];
+
+  // Insert user into the database
+  $sql = "INSERT INTO users (firstname, lastname, email, password, role, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("sssss", $firstname, $lastname, $email, $password, $role);
+
+  if ($stmt->execute()) {
+      // User added successfully
+      $_SESSION["success_message"] = "User added successfully!";
+  } else {
+      // Error occurred
+      $_SESSION["error_message"] = "Error adding user: " . $stmt->error;
+  }
+
+  // Close the statement and connection
+  $stmt->close();
+  $conn->close();
+
+  // Redirect back to newUser.php
+  header("Location: newUser.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,24 +65,23 @@
 
     <section> 
         <form method="post" action="#" >
+
         <label for="firstname">First Name</label>        
         <label for="lastname">Last Name</label>
 
-        <input id="firstname" type="firstname" name="firstname" placeholder="John" />
-        <input id="lastname" type="lastname" name="lastname" placeholder="Doe" />
+        <input id="firstname" type="firstname" name="firstname" placeholder="John" required/>
+        <input id="lastname" type="lastname" name="lastname" placeholder="Doe" required/>
 
         <label for="email">Email</label>
         <label for="password">Password</label>
 
-
-        <input id="email" type="email" name="email" placeholder="example@gmail.com"/>
-    
-        <input id="password" type="password" name="password"/>
+        <input id="email" type="email" name="email" placeholder="example@gmail.com" required/>
+        <input id="password" type="password" name="password" required/>
 
         <label for="role">Role</label>
         <br/>
 
-       <select id="role" name="role">
+       <select id="role" name="role" required>
          <option value="Admin">Admin</option>
          <option value="Member">Member</option>
        </select>
@@ -47,13 +93,14 @@
      
   <aside>
     
-    <a href="dashboard.html"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a>
     <br />
     <a href="newContact.html"><i class="fa-solid fa-user"></i>New Contact</a>
     <br />
     <a href=""onclick="showUsersTable()"><i class="fa-solid fa-users"></i></i>Users</a>
     <br />
     <br />
+    <hr>
     <a href="login.php?logout=true"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
 
   </aside>

@@ -2,13 +2,13 @@
 session_start();
 
 // Replace these variables with your actual database credentials
-$servername = "localhost";
-$username = "123";
-$password = "";
-$dbname = "schema";
+$host = 'localhost';
+$username = "new_user";
+$password = 'password123';
+$dbname = "dolphin_crm";
 
 // Create connection
-$conn = new mysqli('localhost', 'root', "", 'schema');
+$conn = mysqli_connect($host , $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $hashed_password)) {
                 // Password is correct, start a session
                 $_SESSION["user_id"] = $user_id;
-                header("Location: dashboard.php"); // Redirect to the dashboard or another secure page
+                header("Location: dashboard.php"); 
                 exit();
             } else {
                 echo "Invalid email or password.";
@@ -72,8 +72,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="addUser.css">
+    <script src="log.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
