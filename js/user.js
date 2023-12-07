@@ -8,7 +8,7 @@ function showUsersTable() {
 
       // AJAX request to fetch user data from the server
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", "url_to_your_server_endpoint", true);
+      xhr.open("GET", "urgetserverurl", true);
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
