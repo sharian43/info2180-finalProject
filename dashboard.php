@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-// Check if the user is logged in
+//Check if the user is logged in
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
+  
     exit();
 }
 
 // Replace these variables with your actual database credentials
 $host = 'localhost';
-$username = "new_user";
+$username = "Admin";
 $password = 'password123';
 $dbname = "dolphin_crm";
 
@@ -23,7 +24,7 @@ if ($conn->connect_error) {
 
 // Fetch user data for the dashboard
 $user_id = $_SESSION["user_id"];
-$sql = "SELECT title, name, email, company, type FROM contacts WHERE assigned_to = ?";
+$sql = "SELECT title, firstname,lastname, email, company, type FROM contacts WHERE assigned_to = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -73,7 +74,7 @@ $result = $stmt->get_result();
               // Display user data in the table
               while ($row = $result->fetch_assoc()) {
                   echo "<tr>";
-                  echo "<td>" . $row["title"] . ". " . $row["name"] . "</td>";
+                  echo "<td>" . $row["title"] . ". " . $row["firstname"] . "</td>";
                   echo "<td>" . $row["email"] . "</td>";
                   echo "<td>" . $row["company"] . "</td>";
                   echo "<td>" . $row["type"] . "</td>";
@@ -86,12 +87,12 @@ $result = $stmt->get_result();
     <aside>
       <a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a>
       <br />
-      <a href="newContact.html"><i class="fa-solid fa-user"></i>New Contact</a>
+      <a href="newContact.php"><i class="fa-solid fa-user"></i>New Contact</a>
       <br />
-      <a href=""onclick="showUsersTable()"><i class="fa-solid fa-users"></i></i>Users</a>
+      <a href="User.html"onclick="showUsersTable()"><i class="fa-solid fa-users"></i></i>Users</a>
       <br />
       <br />
-      <hr>
+      
       <a href="login.php?logout=true"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
 
     </aside>
