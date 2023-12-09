@@ -46,4 +46,5 @@ CREATE TABLE notes (
 INSERT INTO users (firstname, lastname, email, password, role, created_at) 
 VALUES ('Admin', 'User', 'admin@project2.com', 'password123', 'admin', NOW());
 
-/* GRANT ALL PRIVILEGES ON dolphin_crm.* TO 'new_user'@'localhost'IDENTIFIED BY 'password123';*/
+GRANT ALL PRIVILEGES ON dolphin_crm.* TO 'Admin'@'localhost'IDENTIFIED BY 'password123';
+FlUSH PRIVILEGES;
