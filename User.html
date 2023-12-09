@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM</title>
-    <link rel="stylesheet" href="addUser.css">
+    <link rel="stylesheet" href="user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="user.js"></script>
 </head>
@@ -13,11 +13,11 @@
         <img src="dolphin.png" id="header-pic" />
         <h3>Dolphin CRM</h3>
     </header>
-
-    <h2>Users</h2>
-    <button id="addUserButton" onclick="addUser()"><i class="fas fa-plus"></i> Add User</button>
-    <!-- User information table -->
-    <table id="userTable" style="display: none;">
+    <div id="container">
+       <h2>Users</h2>
+       <button id="addUserButton" onclick="addUser()"><i class="fas fa-plus"></i> Add User</button>
+      <!-- User information table -->
+       <table id="userTable">
         <thead>
             <tr>
                 <th>Name</th>
@@ -28,18 +28,20 @@
         </thead>
         <tbody>
             <!-- User data will be populated here dynamically -->
+
+
         </tbody>
-    </table>
+    </table></div>
 
     <aside>
         <a href="dashboard.php"><i class="fa-solid fa-house"></i>Home</a>
         <br />
-        <a href="newContact.html"><i class="fa-solid fa-user"></i>New Contact</a>
+        <a href="newContact.php"><i class="fa-solid fa-user"></i>New Contact</a>
         <br />
         <a href="" onclick="showUsersTable()"><i class="fa-solid fa-users"></i></i>Users</a>
         <br />
         <br />
-        <hr>
+    
         <a href="login.php?logout=true"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
     </aside>
 </body>
