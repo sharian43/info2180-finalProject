@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Exo+2");
+
+body{
+    display:grid;
+    grid-template-columns: 15% 100%;
+    grid-template-rows: 15% 150% ;
+   
+}
+header {
+    grid-row: 1;
+    grid-column: 1/3;
+    background-color: #7D9DA9;
+    width:100%;
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    color: white;
+    padding: 10px;
+    position: fixed;  
+    /*Set position to fixed */
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 1000;
+}
+
+#header-pic {
+	width:30px;
+	height:30px;
+    padding: 10px;
+}
+
+
+.contact-details {
+    text-align: center;
+    margin: 20px;
+}
+
+#assign-to, #switch {
+    display: inline-block;
+    margin-right: 10px; /
+}
+
+#assign-to {
+    background-color: #2ecc71;
+}
+
+#switch {
+    background-color: orange;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.notes {
+    margin: 20px;
+}
+
+.notes div {
+    border: 1px solid;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#new-note-form {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+}
+
+.container {
+    text-align: center;
+}
