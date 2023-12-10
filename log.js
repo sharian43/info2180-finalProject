@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
      // Function to handle the login
      function handleLogin(email, password) {
-        // You can perform additional client-side validation here
 
         // Send the form data to the server using AJAX
         var xhr = new XMLHttpRequest();
